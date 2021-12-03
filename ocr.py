@@ -9,6 +9,8 @@ import cv2
 from google.cloud import vision
 from tqdm import tqdm
 
+from util import draw_boxes
+
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = 'manga-ocr-333814-4fa21e4a4d24.json'
 
 
@@ -18,17 +20,6 @@ class FeatureType(Enum):
     PARA = 3
     WORD = 4
     SYMBOL = 5
-
-
-def draw_boxes(image_path, words_info, color):
-    np_img = cv2.imread(image_path)
-    for key in words_info.keys():
-        cv2.rectangle(
-            np_img, words_info[key]['bbox'][0], words_info[key]['bbox'][1],
-            color=color, thickness=7, lineType=cv2.LINE_4
-        )
-        cv2.putText(np_img, key, words_info[key]['bbox'][0], cv2.FONT_HERSHEY_PLAIN, 4, (0, 0, 255), 5, cv2.LINE_AA)
-    return np_img
 
 
 def extract_words(document, feature):
@@ -54,9 +45,11 @@ def extract_words(document, feature):
 def main(input_dir, output_dir):
     output_dir = Path(output_dir)
     json_dir = output_dir / 'json'
-    img_dir = output_dir / 'img'
+    orig_img_dir = output_dir / 'orig_img'
+    result_img_dir = output_dir / 'result_img'
     json_dir.mkdir(exist_ok=True, parents=True)
-    img_dir.mkdir(exist_ok=True, parents=True)
+    orig_img_dir.mkdir(exist_ok=True, parents=True)
+    result_img_dir.mkdir(exist_ok=True, parents=True)
     client = vision.ImageAnnotatorClient()
     for file_path in tqdm(list(Path(input_dir).glob("*[png|jpg|jpeg|PNG|JPG|JPEG]"))):
         with io.open(str(file_path), 'rb') as image_file:
@@ -75,7 +68,8 @@ def main(input_dir, output_dir):
         #     words_info = json.load(f)
 
         result_image = draw_boxes(str(file_path), words_info, (0, 0, 255))
-        cv2.imwrite(str(img_dir / f'{file_path.stem}.png'), result_image)
+        cv2.imwrite(str(orig_img_dir / f'{file_path.stem}.png'), cv2.imread(str(file_path)))
+        cv2.imwrite(str(result_img_dir / f'{file_path.stem}.png'), result_image)
     return
 
 

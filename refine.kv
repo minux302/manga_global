@@ -1,0 +1,47 @@
+#:kivy 1.1.0
+
+Root:
+    text_input: text_input
+
+    BoxLayout:
+        origntation: 'vertical'
+
+        BoxLayout:
+            orientation: 'vertical'
+            Image:
+                source: root.source
+
+            BoxLayout:
+                size_hint_y: None
+                height: 30
+                Button:
+                    text: 'Load'
+                    on_release: root.show_load()
+                Button:
+                    text: 'Save'
+                    on_release: root.save()
+        
+        TextInput:
+            id: text_input
+            text: ''
+ 
+
+<LoadDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+            path: "/home/azuma/git/manga_global"
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                on_release: root.cancel()
+
+            Button:
+                text: "Load"
+                on_release: root.load(filechooser.path, filechooser.selection)
