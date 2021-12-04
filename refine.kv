@@ -2,28 +2,34 @@
 
 Root:
     text_input: text_input
-
     BoxLayout:
-        origntation: 'vertical'
+        orientation: 'vertical'
+        Label:
+            text: root.json_path
+            size_hint_y: None
+            height: 30
 
         BoxLayout:
-            orientation: 'vertical'
-            Image:
-                source: root.source
+            origntation: 'vertical'
 
             BoxLayout:
-                size_hint_y: None
-                height: 30
-                Button:
-                    text: 'Load'
-                    on_release: root.show_load()
-                Button:
-                    text: 'Save'
-                    on_release: root.save()
-        
-        TextInput:
-            id: text_input
-            text: ''
+                orientation: 'vertical'
+                Image:
+                    source: root.source
+
+                BoxLayout:
+                    size_hint_y: None
+                    height: 30
+                    Button:
+                        text: 'Load'
+                        on_release: root.show_load()
+                    Button:
+                        text: 'Save'
+                        on_release: root.save()
+
+            TextInput:
+                id: text_input
+                text: ''
  
 
 <LoadDialog>:
@@ -33,7 +39,7 @@ Root:
         orientation: "vertical"
         FileChooserListView:
             id: filechooser
-            path: "/home/azuma/git/manga_global"
+            path: root.json_dir
 
         BoxLayout:
             size_hint_y: None

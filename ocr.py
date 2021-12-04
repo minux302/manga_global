@@ -7,6 +7,7 @@ from pathlib import Path
 
 import cv2
 from google.cloud import vision
+from const import *
 from tqdm import tqdm
 
 from util import draw_boxes
@@ -44,12 +45,13 @@ def extract_words(document, feature):
 
 def main(input_dir, output_dir):
     output_dir = Path(output_dir)
-    json_dir = output_dir / 'json'
-    orig_img_dir = output_dir / 'orig_img'
-    result_img_dir = output_dir / 'result_img'
+    json_dir = output_dir / ORIG_JSON_DIR
+    orig_img_dir = output_dir / ORIG_IMG_DIR
+    result_img_dir = output_dir / OCR_RESULT_IMG_DIR
     json_dir.mkdir(exist_ok=True, parents=True)
     orig_img_dir.mkdir(exist_ok=True, parents=True)
     result_img_dir.mkdir(exist_ok=True, parents=True)
+
     client = vision.ImageAnnotatorClient()
     for file_path in tqdm(list(Path(input_dir).glob("*[png|jpg|jpeg|PNG|JPG|JPEG]"))):
         with io.open(str(file_path), 'rb') as image_file:
@@ -58,10 +60,11 @@ def main(input_dir, output_dir):
 
         response = client.document_text_detection(
                 image=image,
-                image_context={'language_hints': ['ja']}
+                image_context={'language_hints': [ORIG_LANG]}
         )
         document = response.full_text_annotation
         words_info = extract_words(document, FeatureType.WORD)
+
         with open(str(json_dir / f'{file_path.stem}.json'), 'w') as f:
             json.dump(words_info, f, indent=4, ensure_ascii=False)
         # with open(str(json_dir / f'{file_path.stem}.json'), 'r') as f:
