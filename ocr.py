@@ -12,7 +12,7 @@ from tqdm import tqdm
 
 from util import draw_boxes
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = 'manga-ocr-333814-4fa21e4a4d24.json'
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = OCR_KEY_PATH
 
 
 class FeatureType(Enum):
