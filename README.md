@@ -1,6 +1,8 @@
 # Overview
 Manga Global is a simple Manga Translation System. It generates a translated GIMP format data from an image.
 
+![top](assets/top.png)
+
 # Setup
 ## GIMP
 ```
