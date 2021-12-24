@@ -33,6 +33,11 @@ We use DeepL. You need to get DeepL API Key, and set `DEEPL_AUTH_KEY` in `privat
 
 ## Font
 For kivy GUI System, download `mplus-2c-regular.ttf`, put under `fonts`.
+https://www.wfonts.com/font/m-2c
+```
+$ mkdir fonts
+$ mv path/to/mplus-2c-regular.ttf fonts
+```
 
 For GIMP Output, install `Helsinki`.
 https://www.dafont.com/helsinki.font
