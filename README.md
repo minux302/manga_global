@@ -1,7 +1,8 @@
 # Overview
-Manga Global is a simple Manga Translation System. It generates a translated GIMP format data from an image.
 
 ![top](assets/top.png)
+
+Manga Global is a simple Manga Translation System. It generates a translated GIMP format data from an image.
 
 # Setup
 ## GIMP
@@ -31,7 +32,9 @@ You need to get a service account key, and set the key path to `OCR_KEY_PATH` in
 We use DeepL. You need to get DeepL API Key, and set `DEEPL_AUTH_KEY` in `private_const.py`.
 
 ## Font
-In this system, `Helsinki` is used.
+For kivy GUI System, download `mplus-2c-regular.ttf`, put under `fonts`.
+
+For GIMP Output, install `Helsinki`.
 https://www.dafont.com/helsinki.font
 
 # How to Use
