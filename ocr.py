@@ -7,9 +7,10 @@ from pathlib import Path
 
 import cv2
 from google.cloud import vision
-from const import *
 from tqdm import tqdm
 
+from const import *
+from private_const import *
 from util import draw_boxes
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = OCR_KEY_PATH

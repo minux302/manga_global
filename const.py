@@ -1,5 +1,3 @@
-OCR_KEY_PATH = ""
-
 ORIG_LANG = "ja"  # select from google vision api support languages (https://cloud.google.com/vision/docs/languages)
 TARGET_LANG = "EN-US"  # select from deepl supported languages (https://www.deepl.com/docs-api/other-functions/)
 

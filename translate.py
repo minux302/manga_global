@@ -7,7 +7,7 @@ import cv2
 import os
 import deepl
 from const import *
-from secret_const import DEEPL_AUTH_KEY
+from private_const import DEEPL_AUTH_KEY
 import tempfile
 from util import draw_boxes
 
