@@ -1,14 +1,15 @@
 import argparse
-import subprocess as sp
 import json
+import os
+import subprocess as sp
+import tempfile
 from pathlib import Path
 
 import cv2
-import os
 import deepl
+
 from const import *
 from private_const import DEEPL_AUTH_KEY
-import tempfile
 from util import draw_boxes
 
 
