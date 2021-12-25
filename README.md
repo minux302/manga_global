@@ -72,3 +72,6 @@ $ python translate.py -i <OCR_OUTPUT_DIR> --is_translate
 ```
 ![gimp](assets/gimp.jpg)
 
+# Output Setting
+You can control output font {size, type}, {input, output} language in `const.py`
+
